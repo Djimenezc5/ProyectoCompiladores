@@ -1,4 +1,5 @@
 package codigo;
+/* Agregamos los simbolos */
 import java_cup.runtime.Symbol;
 %%
 %class LexerCup
@@ -30,7 +31,7 @@ espacio=[ ,\t,\r,\n]+
 ( "\"" ) {return new Symbol(sym.Comillas, yychar, yyline, yytext());}
 
 /* Tipos de datos */
-( byte | char | long | float | double ) {return new Symbol(sym.T_dato, yychar, yyline, yytext());}
+( byte | char | long | float | double ) {return new Symbol(sym.Tipo_dato, yychar, yyline, yytext());}
 
 /* Tipo de dato Int (Para el main) */
 ( "int" ) {return new Symbol(sym.Int, yychar, yyline, yytext());}
@@ -69,43 +70,43 @@ espacio=[ ,\t,\r,\n]+
 ( "/" ) {return new Symbol(sym.Division, yychar, yyline, yytext());}
 
 /* Operadores logicos */
-( "&&" | "||" | "!" | "&" | "|" ) {return new Symbol(sym.Op_logico, yychar, yyline, yytext());}
+( "&&" | "||" | "!" | "&" | "|" ) {return new Symbol(sym.Operador_logico, yychar, yyline, yytext());}
 
 /*Operadores Relacionales */
-( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {return new Symbol(sym.Op_relacional, yychar, yyline, yytext());}
+( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {return new Symbol(sym.Operador_relacional, yychar, yyline, yytext());}
 
 /* Operadores Atribucion */
-( "+=" | "-="  | "*=" | "/=" | "%=" | "=" ) {return new Symbol(sym.Op_atribucion, yychar, yyline, yytext());}
+( "+=" | "-="  | "*=" | "/=" | "%=" | "=" ) {return new Symbol(sym.Operador_atribucion, yychar, yyline, yytext());}
 
 /* Operadores Incremento y decremento */
-( "++" | "--" ) {return new Symbol(sym.Op_incremento, yychar, yyline, yytext());}
+( "++" | "--" ) {return new Symbol(sym.Operador_incremento, yychar, yyline, yytext());}
 
 /*Operadores Booleanos*/
-( true | false ) {return new Symbol(sym.Op_booleano, yychar, yyline, yytext());}
+( true | false ) {return new Symbol(sym.Operador_booleano, yychar, yyline, yytext());}
 
 /* Parentesis de apertura */
-( "(" ) {return new Symbol(sym.Parentesis_a, yychar, yyline, yytext());}
+( "(" ) {return new Symbol(sym.Parentesis_apertura, yychar, yyline, yytext());}
 
 /* Parentesis de cierre */
-( ")" ) {return new Symbol(sym.Parentesis_c, yychar, yyline, yytext());}
+( ")" ) {return new Symbol(sym.Parentesis_cierre, yychar, yyline, yytext());}
 
 /* Llave de apertura */
-( "{" ) {return new Symbol(sym.Llave_a, yychar, yyline, yytext());}
+( "{" ) {return new Symbol(sym.Llave_apertura, yychar, yyline, yytext());}
 
 /* Llave de cierre */
-( "}" ) {return new Symbol(sym.Llave_c, yychar, yyline, yytext());}
+( "}" ) {return new Symbol(sym.Llave_cierre, yychar, yyline, yytext());}
 
 /* Corchete de apertura */
-( "[" ) {return new Symbol(sym.Corchete_a, yychar, yyline, yytext());}
+( "[" ) {return new Symbol(sym.Corchete_apertura, yychar, yyline, yytext());}
 
 /* Corchete de cierre */
-( "]" ) {return new Symbol(sym.Corchete_c, yychar, yyline, yytext());}
+( "]" ) {return new Symbol(sym.Corchete_cierre, yychar, yyline, yytext());}
 
 /* Marcador de inicio de algoritmo */
 ( "main" ) {return new Symbol(sym.Main, yychar, yyline, yytext());}
 
 /* Punto y coma */
-( ";" ) {return new Symbol(sym.P_coma, yychar, yyline, yytext());}
+( ";" ) {return new Symbol(sym.Punto_coma, yychar, yyline, yytext());}
 
 /* Identificador */
 {L}({L}|{D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}

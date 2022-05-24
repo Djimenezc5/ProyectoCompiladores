@@ -1,5 +1,8 @@
+/* Donde se encuentra incluido el paquete */
 package codigo;
+/* Clase de tokens */
 import static codigo.Tokens.*;
+/* Definimos las declaraciones */
 %%
 %class Lexer
 %type Tokens
@@ -18,13 +21,13 @@ espacio=[ ,\t,\r]+
 ( "//"(.)* ) {/*Ignore*/}
 
 /* Salto de linea */
-( "\n" ) {return Linea;}
+( "\n" ) {return Salto_Linea;}
 
 /* Comillas */
 ( "\"" ) {lexeme=yytext(); return Comillas;}
 
 /* Tipos de datos */
-( byte | int | char | long | float | double ) {lexeme=yytext(); return T_dato;}
+( byte | int | char | long | float | double ) {lexeme=yytext(); return Tipo_dato;}
 
 /* Tipo de dato String */
 ( String ) {lexeme=yytext(); return Cadena;}
@@ -60,43 +63,43 @@ espacio=[ ,\t,\r]+
 ( "/" ) {lexeme=yytext(); return Division;}
 
 /* Operadores logicos */
-( "&&" | "||" | "!" | "&" | "|" ) {lexeme=yytext(); return Op_logico;}
+( "&&" | "||" | "!" | "&" | "|" ) {lexeme=yytext(); return Operador_logico;}
 
 /*Operadores Relacionales */
-( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme = yytext(); return Op_relacional;}
+( ">" | "<" | "==" | "!=" | ">=" | "<=" | "<<" | ">>" ) {lexeme = yytext(); return Operador_relacional;}
 
 /* Operadores Atribucion */
-( "+=" | "-="  | "*=" | "/=" | "%=" ) {lexeme = yytext(); return Op_atribucion;}
+( "+=" | "-="  | "*=" | "/=" | "%=" ) {lexeme = yytext(); return Operador_atribucion;}
 
 /* Operadores Incremento y decremento */
-( "++" | "--" ) {lexeme = yytext(); return Op_incremento;}
+( "++" | "--" ) {lexeme = yytext(); return Operador_incremento;}
 
 /*Operadores Booleanos*/
-(true | false)      {lexeme = yytext(); return Op_booleano;}
+(true | false)      {lexeme = yytext(); return Operador_booleano;}
 
 /* Parentesis de apertura */
-( "(" ) {lexeme=yytext(); return Parentesis_a;}
+( "(" ) {lexeme=yytext(); return Parentesis_apertura;}
 
 /* Parentesis de cierre */
-( ")" ) {lexeme=yytext(); return Parentesis_c;}
+( ")" ) {lexeme=yytext(); return Parentesis_cierre;}
 
 /* Llave de apertura */
-( "{" ) {lexeme=yytext(); return Llave_a;}
+( "{" ) {lexeme=yytext(); return Llave_apertura;}
 
 /* Llave de cierre */
-( "}" ) {lexeme=yytext(); return Llave_c;}
+( "}" ) {lexeme=yytext(); return Llave_cierre;}
 
 /* Corchete de apertura */
-( "[" ) {lexeme = yytext(); return Corchete_a;}
+( "[" ) {lexeme = yytext(); return Corchete_apertura;}
 
 /* Corchete de cierre */
-( "]" ) {lexeme = yytext(); return Corchete_c;}
+( "]" ) {lexeme = yytext(); return Corchete_cierre;}
 
 /* Marcador de inicio de algoritmo */
 ( "main" ) {lexeme=yytext(); return Main;}
 
 /* Punto y coma */
-( ";" ) {lexeme=yytext(); return P_coma;}
+( ";" ) {lexeme=yytext(); return Punto_coma;}
 
 /* Identificador */
 {L}({L}|{D})* {lexeme=yytext(); return Identificador;}
