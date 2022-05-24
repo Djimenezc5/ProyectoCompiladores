@@ -44,6 +44,6 @@ public class Principal {
         Files.move(
          Paths.get("E:/Proyectos/Java/ProyectoFinalCompiladores/Sintax.java"), 
          Paths.get("E:/Proyectos/Java/ProyectoFinalCompiladores/src/codigo/Sintax.java")
-        );  
+        );
     }
 }
